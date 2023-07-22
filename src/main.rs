@@ -7,7 +7,6 @@ use serenity::{
     Client
 };
 
-const TOKEN_BOT: &str = "MTEzMjA2NDQ0MDk3MjQ5NjkyNg.GRZuxz.zH6aEdAo9rWyfPBEc3bKZfxN_kycfj8X3HJvBI";
 const APPLICATION_ID: u64 = 1132075956882911284;
 
 const HELP_MESSAGE: &str = "
@@ -53,10 +52,10 @@ impl EventHandler for Handler {
 
 #[tokio::main]
 async fn main() {
-    // let token = env::var("DISCORD_TOKEN")
-    //     .expect("Expected a token in the environment");
+    let token = env::var("DISCORD_TOKEN")
+        .expect("Expected a token in the environment");
 
-    let mut client = Client::builder(&TOKEN_BOT, GatewayIntents::default())
+    let mut client = Client::builder(&token, GatewayIntents::default())
         .event_handler(Handler)
         .await
         .expect("Err creating client");
